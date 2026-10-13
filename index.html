@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ника Орлова — визитка разработчицы</title>
+<style>
+:root{--accent:#7c5cff;--accent2:#ff6fae;--ink:#1d1b26;--muted:#625f70;--bg:#f7f6fb;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:17px}
+code,.mono{font-family:Consolas,"SF Mono",Menlo,monospace}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+section{padding:72px 0 0}
+h2{font-size:1.8rem;margin-bottom:24px;position:relative;padding-bottom:12px}
+h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+p+p{margin-top:14px}
+b{color:var(--accent)}
+.hero{color:#fff;background:linear-gradient(to top,rgba(20,18,31,.92),rgba(20,18,31,.55) 60%,rgba(20,18,31,.7)),url(images/hero.jpg) center/cover;padding:130px 0 70px}
+.hero .mono{color:#b9a9ff;font-size:.95rem;margin-bottom:18px}
+.hero h1{font-size:clamp(2.4rem,8vw,4.4rem);line-height:1.1;margin-bottom:16px}
+.hero h1 span{background:linear-gradient(90deg,#b9a9ff,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:1.2rem;max-width:560px;opacity:.92}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.meta span{border:1px solid rgba(255,255,255,.3);padding:4px 14px;border-radius:99px;font-size:.92rem}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.tags span{font-family:Consolas,monospace;font-size:.92rem;background:#ece8ff;color:var(--accent);padding:4px 12px;border-radius:8px}
+.fate{margin-top:24px;list-style:none}
+.fate li{padding:12px 16px 12px 22px;border-left:3px solid var(--accent);margin-bottom:10px;background:var(--card);border-radius:0 10px 10px 0}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.card{background:var(--card);border-radius:14px;padding:20px;box-shadow:0 2px 14px rgba(40,30,90,.07)}
+.card h3{font-size:1.05rem;margin-bottom:6px;color:var(--accent)}
+.card p{font-size:.96rem;color:var(--muted)}
+.term{margin-top:28px;background:#14121f;color:#e8e4ff;border-radius:14px;padding:18px 20px;font-family:Consolas,monospace;font-size:.92rem;line-height:1.8;overflow-x:auto}
+.term .c{color:#8a84a8}.term .k{color:var(--accent2)}.term .s{color:#9de3b0}
+.facts{list-style:none;counter-reset:f}
+.facts li{counter-increment:f;display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #e4e0f2}
+.facts li::before{content:counter(f);flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.finale{margin-top:80px;color:#fff;text-align:center;padding:110px 20px;background:linear-gradient(rgba(20,18,31,.72),rgba(20,18,31,.82)),url(images/eiffel.jpg) center/cover}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.shot{border-radius:14px;overflow:hidden;height:240px}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.wide{margin-top:16px;height:260px}
+.finale blockquote{font-size:clamp(1.4rem,4.5vw,2.1rem);max-width:680px;margin:0 auto 16px;line-height:1.4;font-style:italic}
+.finale p{opacity:.85}
+footer{padding:24px 20px;font-size:.75rem;line-height:1.6;color:var(--muted);text-align:center}
+@media(max-width:620px){body{font-size:16px}.grid,.cards{grid-template-columns:1fr}section{padding-top:56px}.hero{padding-top:80px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="mono">&gt; hello, world_</p>
+    <h1>Ника <span>Орлова</span></h1>
+    <p class="lead">Мне 21, я пишу код, ломаю его и чиню обратно. Люблю, когда интерфейс удобный, а сборка зелёная. Добро пожаловать на мою страничку.</p>
+    <div class="meta"><span>21 год</span><span>Франция</span><span>fullstack-разработчица</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="about">
+    <h2>Обо мне</h2>
+    <p>Привет! Я — <b>Ника</b>. Живу во Франции, учусь на четвёртом курсе, а на самом деле живу в редакторе кода. Начала с «сделаю сайт одногруппнице» в пятнадцать лет, и с тех пор остановиться не получается.</p>
+    <p>Я человек <b>дотошный, любопытный и слегка педантичный</b> — но исключительно по делу. Если вижу кнопку, которая съехала на два пикселя, мне физически нехорошо. Зато при мне код читается, тесты проходят, а релизы не случаются в пятницу вечером.</p>
+    <div class="tags"><span>TypeScript</span><span>React</span><span>Python</span><span>PostgreSQL</span><span>Docker</span><span>Git</span></div>
+    <ul class="fate">
+      <li>Первый сайт собрала в 15 лет — на нём была бегущая строка. Стыдно, но тепло.</li>
+      <li>Со второго курса работаю <b>джуном</b> в небольшой студии и уже знаю, что «временное решение» живёт вечно.</li>
+      <li>Веду свои pet-проекты и выкладываю их на GitHub — пусть люди видят, как я расту.</li>
+      <li>Главное правило: <b>«Сначала заставь работать, потом сделай красиво, потом сделай быстро»</b>.</li>
+    </ul>
+  </section>
+
+  <section id="work">
+    <h2>Чем занимаюсь</h2>
+    <p>Делаю веб-приложения от макета до деплоя: рисую интерфейс, пишу API и храню данные так, чтобы потом не было мучительно больно.</p>
+    <div class="grid">
+      <div class="shot"><img src="images/code1.jpg" alt="Руки на клавиатуре ноутбука с кодом на экране"></div>
+      <div class="shot"><img src="images/code2.jpg" alt="Редактор кода на экране ноутбука"></div>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Фронтенд</h3><p>React и TypeScript, адаптивная вёрстка, доступность. Интерфейс должен нормально работать и на телефоне бабушки.</p></div>
+      <div class="card"><h3>Бэкенд</h3><p>API на Python (FastAPI) и Node.js, базы на PostgreSQL. Люблю понятные схемы и честные миграции.</p></div>
+      <div class="card"><h3>Pet-проект: «Привычки»</h3><p>Трекер привычек с мягкими напоминаниями — без криков и штрафов. Им пользуются человек тридцать, и это уже много.</p></div>
+      <div class="card"><h3>Telegram-боты</h3><p>Пишу ботов для знакомых: от расписания пар до учёта общих расходов в общаге.</p></div>
+    </div>
+    <div class="shot wide"><img src="images/keyboard.jpg" alt="Механическая клавиатура"></div>
+    <div class="term">
+      <span class="c"># моя типичная пятница</span><br>
+      <span class="k">$</span> git commit -m <span class="s">"fix: наконец-то починила"</span><br>
+      <span class="k">$</span> npm test &amp;&amp; echo <span class="s">"всё зелёное, можно кофе"</span>
+    </div>
+  </section>
+
+  <section id="facts">
+    <h2>Интересные факты</h2>
+    <ol class="facts">
+      <li><span>Выпиваю кофе строго из одной кружки с надписью <code>404: sleep not found</code>.</span></li>
+      <li><span>Печатаю на механической клавиатуре с синими свитчами. Соседи по общежитию уже смирились.</span></li>
+      <li><span>Называю переменные нормально. Если встречаю <code>data2_final_new</code>, у меня дёргается глаз.</span></li>
+      <li><span>Разговариваю с резиновой уточкой на мониторе. Утка уже выслушала половину моих багов и ни разу не перебила.</span></li>
+      <li><span>Люблю ночные хакатоны и ненавижу ночные хотфиксы. Это разные вещи.</span></li>
+      <li><span>Верю, что хороший README важнее хитрого алгоритма. Пока другие мечтают об идеальной архитектуре, я пишу документацию.</span></li>
+    </ol>
+    <p style="margin-top:28px"><b>Как со мной работать:</b> приходите с задачей и контекстом, а не с «ну сделай как-нибудь». Дайте мне чёткое ТЗ, немного самостоятельности и код-ревью без токсичности — и я сдам вовремя, с тестами и с описанием. Только не просите «поправить по-быстрому в проде».</p>
+  </section>
+
+</main>
+
+<div class="finale">
+  <blockquote>«Работает у меня — значит, надо проверить, что работает и у вас.»</blockquote>
+  <p>Пишите, если нужна команда или просто хочется обсудить баги.</p>
+</div>
+
+<footer>Изображения: hero.jpg — Benh LIEU SONG, CC BY-SA 4.0 · code1.jpg — Negative Space, CC0 · code2.jpg — Tirza van Dijk, CC0 · keyboard.jpg — iMoD Official YouTube channel, CC BY 3.0 · eiffel.jpg — Rebecca Kennison, CC BY 2.5.</footer>
+
+</body>
+</html>
