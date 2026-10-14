@@ -4,49 +4,125 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ника Орлова — визитка разработчицы</title>
+<script>
+document.documentElement.className='js';
+try{
+  var t=localStorage.getItem('theme');
+  if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)t='blue';
+  if(t==='blue')document.documentElement.setAttribute('data-theme','blue');
+}catch(e){}
+</script>
 <style>
-:root{--accent:#7c5cff;--accent2:#ff6fae;--ink:#1d1b26;--muted:#625f70;--bg:#f7f6fb;--card:#fff}
+:root{
+  --accent:#7c5cff;--accent2:#ff6fae;--on-accent:#fff;
+  --ink:#1d1b26;--muted:#5b586a;--bg:#f7f6fb;--card:#fff;--line:#e4e0f2;
+  --tag-bg:#ece8ff;--term-bg:#14121f;--shadow:0 2px 14px rgba(40,30,90,.07);
+  --hero-a:#c9bcff;--hero-b:#ff8fc0;--focus:#7c5cff;
+}
+html[data-theme="blue"]{
+  --accent:#6ea8ff;--accent2:#7fd4ff;--on-accent:#0b1630;
+  --ink:#e8eeff;--muted:#a9b6d8;--bg:#0b1630;--card:#13224a;--line:#223566;
+  --tag-bg:#1b2f63;--term-bg:#071024;--shadow:0 2px 14px rgba(0,0,0,.35);
+  --hero-a:#bcd7ff;--hero-b:#7fd4ff;--focus:#8fc0ff;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:17px}
-code,.mono{font-family:Consolas,"SF Mono",Menlo,monospace}
+html{scroll-behavior:auto}
+body{
+  font-family:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:1.0625rem;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  transition:background-color .25s,color .25s;
+}
+code,.mono{font-family:Consolas,"Cascadia Mono","SF Mono",Menlo,monospace}
+h1,h2,h3{font-family:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.15;letter-spacing:-.02em}
 .wrap{max-width:860px;margin:0 auto;padding:0 20px}
-section{padding:72px 0 0}
-h2{font-size:1.8rem;margin-bottom:24px;position:relative;padding-bottom:12px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+/* переключатель темы */
+.theme-toggle{
+  position:fixed;top:14px;right:14px;z-index:20;display:flex;align-items:center;gap:8px;
+  font:600 .9rem/1 inherit;font-family:inherit;color:var(--ink);cursor:pointer;
+  background:var(--card);border:1px solid var(--line);border-radius:99px;padding:9px 14px 9px 10px;
+  box-shadow:var(--shadow);
+}
+.theme-toggle .dot{
+  width:18px;height:18px;border-radius:50%;border:2px solid var(--accent);
+  background:linear-gradient(90deg,#fff 50%,#0b1630 50%);
+}
+
+/* hero */
+.hero{
+  color:#fff;padding:120px 0 64px;
+  background:linear-gradient(to top,rgba(10,12,28,.94),rgba(10,12,28,.6) 60%,rgba(10,12,28,.72)),url(images/hero.jpg) center/cover;
+}
+.hero .mono{color:var(--hero-a);font-size:.95rem;letter-spacing:.02em;margin-bottom:16px}
+.hero h1{font-size:clamp(2.5rem,8vw,4.5rem);font-weight:800;margin-bottom:18px}
+.hero h1 span{background:linear-gradient(90deg,var(--hero-a),var(--hero-b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:1.2rem;max-width:580px;color:rgba(255,255,255,.93);font-weight:400}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.meta span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:5px 14px;border-radius:99px;font-size:.92rem;font-weight:500}
+.hero-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-links a{
+  text-decoration:none;font-weight:600;font-size:.98rem;padding:11px 22px;border-radius:12px;
+  color:#fff;border:1px solid rgba(255,255,255,.4);
+}
+.hero-links a:first-child{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.hero-links a:hover{filter:brightness(1.1)}
+
+/* вкладки */
+.tabs{display:none;position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.js .tabs{display:block}
+.tabs .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:10px;padding-bottom:10px;padding-right:150px;scrollbar-width:none}
+.tabs .wrap::-webkit-scrollbar{display:none}
+.tab{
+  flex:none;text-decoration:none;font-weight:600;font-size:.97rem;color:var(--muted);
+  padding:9px 18px;border-radius:99px;border:1px solid transparent;white-space:nowrap;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--on-accent)}
+
+section{padding:44px 0 0}
+section[hidden]{display:none}
+h2{font-size:1.9rem;font-weight:800;margin-bottom:24px;position:relative;padding-bottom:12px}
 h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
 p+p{margin-top:14px}
-b{color:var(--accent)}
-.hero{color:#fff;background:linear-gradient(to top,rgba(20,18,31,.92),rgba(20,18,31,.55) 60%,rgba(20,18,31,.7)),url(images/hero.jpg) center/cover;padding:130px 0 70px}
-.hero .mono{color:#b9a9ff;font-size:.95rem;margin-bottom:18px}
-.hero h1{font-size:clamp(2.4rem,8vw,4.4rem);line-height:1.1;margin-bottom:16px}
-.hero h1 span{background:linear-gradient(90deg,#b9a9ff,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p.lead{font-size:1.2rem;max-width:560px;opacity:.92}
-.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-.meta span{border:1px solid rgba(255,255,255,.3);padding:4px 14px;border-radius:99px;font-size:.92rem}
+b{color:var(--accent);font-weight:700}
 .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.tags span{font-family:Consolas,monospace;font-size:.92rem;background:#ece8ff;color:var(--accent);padding:4px 12px;border-radius:8px}
+.tags span{font-family:Consolas,"Cascadia Mono",monospace;font-size:.92rem;background:var(--tag-bg);color:var(--accent);padding:4px 12px;border-radius:8px}
 .fate{margin-top:24px;list-style:none}
 .fate li{padding:12px 16px 12px 22px;border-left:3px solid var(--accent);margin-bottom:10px;background:var(--card);border-radius:0 10px 10px 0}
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
-.card{background:var(--card);border-radius:14px;padding:20px;box-shadow:0 2px 14px rgba(40,30,90,.07)}
-.card h3{font-size:1.05rem;margin-bottom:6px;color:var(--accent)}
+.card{background:var(--card);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+.card h3{font-size:1.08rem;font-weight:700;margin-bottom:6px;color:var(--accent)}
 .card p{font-size:.96rem;color:var(--muted)}
-.term{margin-top:28px;background:#14121f;color:#e8e4ff;border-radius:14px;padding:18px 20px;font-family:Consolas,monospace;font-size:.92rem;line-height:1.8;overflow-x:auto}
-.term .c{color:#8a84a8}.term .k{color:var(--accent2)}.term .s{color:#9de3b0}
+.term{margin-top:28px;background:var(--term-bg);color:#e8e4ff;border-radius:14px;padding:18px 20px;font-family:Consolas,"Cascadia Mono",monospace;font-size:.92rem;line-height:1.8;overflow-x:auto}
+.term .c{color:#8a94b8}.term .k{color:var(--hero-b)}.term .s{color:#9de3b0}
 .facts{list-style:none;counter-reset:f}
-.facts li{counter-increment:f;display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #e4e0f2}
-.facts li::before{content:counter(f);flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-.finale{margin-top:80px;color:#fff;text-align:center;padding:110px 20px;background:linear-gradient(rgba(20,18,31,.72),rgba(20,18,31,.82)),url(images/eiffel.jpg) center/cover}
+.facts li{counter-increment:f;display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.facts li::before{content:counter(f);flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-weight:700}
+.finale{margin-top:80px;color:#fff;text-align:center;padding:110px 20px;background:linear-gradient(rgba(10,12,28,.72),rgba(10,12,28,.84)),url(images/eiffel.jpg) center/cover}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
 .shot{border-radius:14px;overflow:hidden;height:240px}
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
 .wide{margin-top:16px;height:260px}
-.finale blockquote{font-size:clamp(1.4rem,4.5vw,2.1rem);max-width:680px;margin:0 auto 16px;line-height:1.4;font-style:italic}
-.finale p{opacity:.85}
+.finale blockquote{font-size:clamp(1.4rem,4.5vw,2.1rem);max-width:680px;margin:0 auto 16px;line-height:1.4;font-style:italic;font-weight:600}
+.finale p{opacity:.88}
 footer{padding:24px 20px;font-size:.75rem;line-height:1.6;color:var(--muted);text-align:center}
-@media(max-width:620px){body{font-size:16px}.grid,.cards{grid-template-columns:1fr}section{padding-top:56px}.hero{padding-top:80px}}
+@media(max-width:620px){
+  body{font-size:1rem}
+  .grid,.cards{grid-template-columns:1fr}
+  .hero{padding-top:84px}
+  .tabs .wrap{padding-right:112px}
+  .theme-toggle{top:10px;right:10px;padding:8px 12px 8px 9px}
+}
+@media(prefers-reduced-motion:reduce){body{transition:none}}
 </style>
 </head>
 <body>
+
+<button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" title="Переключить тему">
+  <span class="dot" aria-hidden="true"></span><span id="themeLabel">Тема</span>
+</button>
 
 <header class="hero">
   <div class="wrap">
@@ -54,12 +130,21 @@ footer{padding:24px 20px;font-size:.75rem;line-height:1.6;color:var(--muted);tex
     <h1>Ника <span>Орлова</span></h1>
     <p class="lead">Мне 21, я пишу код, ломаю его и чиню обратно. Люблю, когда интерфейс удобный, а сборка зелёная. Добро пожаловать на мою страничку.</p>
     <div class="meta"><span>21 год</span><span>Франция</span><span>fullstack-разработчица</span></div>
+    <div class="hero-links"><a href="#about">Обо мне</a><a href="#work">Чем занимаюсь</a></div>
   </div>
 </header>
 
+<nav class="tabs" id="tabs" aria-label="Разделы страницы">
+  <div class="wrap" role="tablist">
+    <a class="tab" role="tab" href="#about" id="tab-about" aria-controls="about">Обо мне</a>
+    <a class="tab" role="tab" href="#work" id="tab-work" aria-controls="work">Чем занимаюсь</a>
+    <a class="tab" role="tab" href="#facts" id="tab-facts" aria-controls="facts">Интересные факты</a>
+  </div>
+</nav>
+
 <main class="wrap">
 
-  <section id="about">
+  <section id="about" role="tabpanel" aria-labelledby="tab-about">
     <h2>Обо мне</h2>
     <p>Привет! Я — <b>Ника</b>. Живу во Франции, учусь на четвёртом курсе, а на самом деле живу в редакторе кода. Начала с «сделаю сайт одногруппнице» в пятнадцать лет, и с тех пор остановиться не получается.</p>
     <p>Я человек <b>дотошный, любопытный и слегка педантичный</b> — но исключительно по делу. Если вижу кнопку, которая съехала на два пикселя, мне физически нехорошо. Зато при мне код читается, тесты проходят, а релизы не случаются в пятницу вечером.</p>
@@ -72,7 +157,7 @@ footer{padding:24px 20px;font-size:.75rem;line-height:1.6;color:var(--muted);tex
     </ul>
   </section>
 
-  <section id="work">
+  <section id="work" role="tabpanel" aria-labelledby="tab-work">
     <h2>Чем занимаюсь</h2>
     <p>Делаю веб-приложения от макета до деплоя: рисую интерфейс, пишу API и храню данные так, чтобы потом не было мучительно больно.</p>
     <div class="grid">
@@ -93,7 +178,7 @@ footer{padding:24px 20px;font-size:.75rem;line-height:1.6;color:var(--muted);tex
     </div>
   </section>
 
-  <section id="facts">
+  <section id="facts" role="tabpanel" aria-labelledby="tab-facts">
     <h2>Интересные факты</h2>
     <ol class="facts">
       <li><span>Выпиваю кофе строго из одной кружки с надписью <code>404: sleep not found</code>.</span></li>
@@ -114,6 +199,70 @@ footer{padding:24px 20px;font-size:.75rem;line-height:1.6;color:var(--muted);tex
 </div>
 
 <footer>Изображения: hero.jpg — Benh LIEU SONG, CC BY-SA 4.0 · code1.jpg — Negative Space, CC0 · code2.jpg — Tirza van Dijk, CC0 · keyboard.jpg — iMoD Official YouTube channel, CC BY 3.0 · eiffel.jpg — Rebecca Kennison, CC BY 2.5.</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+
+  /* тема */
+  var btn=document.getElementById('themeToggle'),label=document.getElementById('themeLabel');
+  function paint(){
+    var blue=root.getAttribute('data-theme')==='blue';
+    btn.setAttribute('aria-pressed',blue?'true':'false');
+    label.textContent=blue?'Синяя тема':'Белая тема';
+  }
+  btn.addEventListener('click',function(){
+    var blue=root.getAttribute('data-theme')==='blue';
+    if(blue)root.removeAttribute('data-theme');else root.setAttribute('data-theme','blue');
+    try{localStorage.setItem('theme',blue?'white':'blue')}catch(e){}
+    paint();
+  });
+  paint();
+
+  /* вкладки */
+  var ids=['about','work','facts'];
+  var tabs=ids.map(function(id){return document.getElementById('tab-'+id)});
+  var nav=document.getElementById('tabs');
+  function activate(id,scroll){
+    if(ids.indexOf(id)<0)id='about';
+    ids.forEach(function(x,i){
+      var on=x===id;
+      document.getElementById(x).hidden=!on;
+      tabs[i].setAttribute('aria-selected',on?'true':'false');
+      tabs[i].tabIndex=on?0:-1;
+    });
+    if(scroll){
+      var top=nav.getBoundingClientRect().top+window.pageYOffset;
+      if(window.pageYOffset>top)window.scrollTo(0,top);
+    }
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]');
+    if(!a)return;
+    var id=a.getAttribute('href').slice(1);
+    if(ids.indexOf(id)<0)return;
+    e.preventDefault();
+    activate(id,true);
+    try{history.replaceState(null,'','#'+id)}catch(err){}
+    if(a.classList.contains('tab'))a.focus();
+    else{
+      var top=nav.getBoundingClientRect().top+window.pageYOffset;
+      window.scrollTo(0,top);
+    }
+  });
+  nav.addEventListener('keydown',function(e){
+    var i=tabs.indexOf(document.activeElement);
+    if(i<0||(e.key!=='ArrowRight'&&e.key!=='ArrowLeft'))return;
+    e.preventDefault();
+    var n=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;
+    activate(ids[n],false);
+    tabs[n].focus();
+    try{history.replaceState(null,'','#'+ids[n])}catch(err){}
+  });
+  window.addEventListener('hashchange',function(){activate(location.hash.slice(1),false)});
+  activate(location.hash.slice(1),false);
+})();
+</script>
 
 </body>
 </html>
